@@ -13,9 +13,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:8081")
 public class UserController {
 	@Autowired
 	private UserService userService;
+
+	@PostMapping("/login")
+	public ResponseEntity<User> login(@RequestBody User user) {
+		User storedUser = userService.findUserByUsername(user.getUsername());
+		if (storedUser != null) {
+			if (userService.verifyPassword(user.getHashed_password(),storedUser.getHashed_password())) {
+				return new ResponseEntity<>(storedUser, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@GetMapping
 	public ResponseEntity<List<User>> getAllUsers() {
@@ -36,7 +51,6 @@ public class UserController {
 
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		System.out.println("check user:" + user);
 		User createdUser = userService.createUser(user);
 		if (createdUser != null) {
 			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);

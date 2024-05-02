@@ -6,11 +6,26 @@ import java.util.List;
 import java.util.Optional;
 import com.javaspring.springmad.entity.User;
 import com.javaspring.springmad.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    public UserService() {
+        this.passwordEncoder = new BCryptPasswordEncoder();
+    }
+
+    public String hashPassword(String password) {
+        return passwordEncoder.encode(password);
+    }
+
+    public boolean verifyPassword(String rawPassword, String hashedPassword) {
+        return passwordEncoder.matches(rawPassword, hashedPassword);
+    }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -25,6 +40,8 @@ public class UserService {
         if (existingUser != null) {
             return null;
         } else {
+            String hashPassWord = hashPassword(user.getHashed_password());
+            user.setHashed_password(hashPassWord);
             return userRepository.save(user);
         }
     }
