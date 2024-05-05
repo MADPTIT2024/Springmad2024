@@ -24,6 +24,8 @@ public class ExerciseCollection {
     @Column(nullable = false)
     private boolean publicity;
 
+    @Column(nullable = false)
+    private String calories;
 
     @OneToMany(mappedBy = "exerciseCollection")
     private Set<UserCollectionDetail> userCollectionDetails;

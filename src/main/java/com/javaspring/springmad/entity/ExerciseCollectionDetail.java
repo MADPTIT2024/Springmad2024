@@ -21,12 +21,6 @@ public class ExerciseCollectionDetail {
     @Column(nullable = false)
     private boolean state;
 
-    @Column(nullable = false)
-    private int rep;
-
-    @Column(nullable = false)
-    private int timer;
-
     @ManyToOne
     @JoinColumn(name = "exercise_id", referencedColumnName = "id")
     private Exercise exercise;

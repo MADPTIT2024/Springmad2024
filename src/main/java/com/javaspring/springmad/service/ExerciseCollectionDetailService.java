@@ -21,9 +21,9 @@ public class ExerciseCollectionDetailService {
         return exerciseCollectionDetailRepository.findById(id).orElse(null);
     }
 
-    public ExerciseCollectionDetail createExerciseCollectionDetail(ExerciseCollectionDetail exerciseCollection) {
+    public ExerciseCollectionDetail createExerciseCollectionDetail(ExerciseCollectionDetail exerciseCollectionDetail) {
 
-            return exerciseCollectionDetailRepository.save(exerciseCollection);
+            return exerciseCollectionDetailRepository.save(exerciseCollectionDetail);
     }
 
     public ExerciseCollectionDetail updateExerciseCollectionDetail(Long id, ExerciseCollectionDetail exerciseCollection) {
@@ -31,9 +31,7 @@ public class ExerciseCollectionDetailService {
         if (existingExerciseCollectionDetailOptional.isPresent()) {
             ExerciseCollectionDetail existingExerciseCollectionDetail = existingExerciseCollectionDetailOptional.get();
             existingExerciseCollectionDetail.setIdx(exerciseCollection.getIdx());
-            existingExerciseCollectionDetail.setRep(exerciseCollection.getRep());
             existingExerciseCollectionDetail.setState(exerciseCollection.isState());
-            existingExerciseCollectionDetail.setTimer(exerciseCollection.getTimer());
             existingExerciseCollectionDetail.setExercise(exerciseCollection.getExercise());
             existingExerciseCollectionDetail.setExerciseCollection(exerciseCollection.getExerciseCollection());
 

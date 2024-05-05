@@ -27,9 +27,15 @@ public class Exercise {
     @Column(nullable = false)
     private String detail;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String animation;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String video;
+
+    @Column(nullable = true)
+    private Integer rep = 0;
+
+    @Column(nullable = true)
+    private Integer timer = 0;
 }

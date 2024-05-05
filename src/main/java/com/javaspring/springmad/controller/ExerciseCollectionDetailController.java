@@ -34,8 +34,8 @@ public class ExerciseCollectionDetailController {
         }
 
         @PostMapping
-        public ResponseEntity<ExerciseCollectionDetail> createExerciseCollectionDetail(@RequestBody ExerciseCollectionDetail exerciseCollection) {
-            ExerciseCollectionDetail createdExerciseCollectionDetail = exerciseCollectionDetailService.createExerciseCollectionDetail(exerciseCollection);
+        public ResponseEntity<ExerciseCollectionDetail> createExerciseCollectionDetail(@RequestBody ExerciseCollectionDetail exerciseCollectionDetail) {
+            ExerciseCollectionDetail createdExerciseCollectionDetail = exerciseCollectionDetailService.createExerciseCollectionDetail(exerciseCollectionDetail);
             if (createdExerciseCollectionDetail != null) {
                 return new ResponseEntity<>(createdExerciseCollectionDetail, HttpStatus.CREATED);
             } else {
