@@ -13,10 +13,13 @@ import java.util.List;
 @RequestMapping("/api/exercise-collection-details")
 public class ExerciseCollectionDetailController {
 
-        @Autowired
-        private ExerciseCollectionDetailService exerciseCollectionDetailService;
+    private final ExerciseCollectionDetailService exerciseCollectionDetailService;
 
-        @GetMapping
+    public ExerciseCollectionDetailController(ExerciseCollectionDetailService exerciseCollectionDetailService) {
+        this.exerciseCollectionDetailService = exerciseCollectionDetailService;
+    }
+
+    @GetMapping
         public ResponseEntity<List<ExerciseCollectionDetail>> getAllExerciseCollectionDetails() {
             List<ExerciseCollectionDetail> exerciseCollections = exerciseCollectionDetailService.getAllExerciseCollectionDetails();
 
@@ -34,8 +37,9 @@ public class ExerciseCollectionDetailController {
         }
 
         @PostMapping
-        public ResponseEntity<ExerciseCollectionDetail> createExerciseCollectionDetail(@RequestBody ExerciseCollectionDetail exerciseCollection) {
-            ExerciseCollectionDetail createdExerciseCollectionDetail = exerciseCollectionDetailService.createExerciseCollectionDetail(exerciseCollection);
+        public ResponseEntity<ExerciseCollectionDetail> createExerciseCollectionDetail(@RequestBody ExerciseCollectionDetail exerciseCollectionDetail) {
+            ExerciseCollectionDetail createdExerciseCollectionDetail = exerciseCollectionDetailService.createExerciseCollectionDetail(exerciseCollectionDetail);
+            System.out.println(createdExerciseCollectionDetail);
             if (createdExerciseCollectionDetail != null) {
                 return new ResponseEntity<>(createdExerciseCollectionDetail, HttpStatus.CREATED);
             } else {

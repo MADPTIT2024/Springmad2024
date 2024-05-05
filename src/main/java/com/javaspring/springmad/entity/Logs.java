@@ -30,5 +30,5 @@ public class Logs {
 	private String description;
 	
 	@Column()
-	private Date atTime;
+	private String atTime;
 }
