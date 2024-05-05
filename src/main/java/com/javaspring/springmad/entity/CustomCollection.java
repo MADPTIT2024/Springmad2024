@@ -2,36 +2,35 @@ package com.javaspring.springmad.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ExerciseCollection {
+@Builder
+public class CustomCollection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "id"
+    )
+    private User user;
 
-    @Column(nullable = false)
-    private boolean publicity;
-
-
-    @OneToMany(mappedBy = "exerciseCollection")
-    private Set<UserCollectionDetail> userCollectionDetails;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(
-            name = "exercise_collection_id",
+            name = "customcollection_id",
             referencedColumnName = "id"
     )
-    private List<ExerciseCollectionDetail> exerciseCollectionDetails;
+    private List<CustomeCollectionDetail> customeCollectionDetails;
 }
