@@ -26,12 +26,12 @@ public class ExerciseCollectionDetailService {
     }
 
     public ExerciseCollectionDetail createExerciseCollectionDetail(ExerciseCollectionDetail exerciseCollectionDetail) {
-//        var exercise = exerciseService.getExerciseById(exerciseCollectionDetail.getExercise().getId());
-//        var exerciseCollection = exerciseCollectionService.getExerciseCollectionById(exerciseCollectionDetail.getExerciseCollection().getId());
-//        exerciseCollectionDetail.setExercise(exercise);
-//        exerciseCollectionDetail.setExerciseCollection(exerciseCollection);
-        System.out.println(exerciseCollectionDetail);
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+        var exercise = exerciseService.getExerciseById(exerciseCollectionDetail.getExercise().getId());
+
+        var exerciseCollection = exerciseCollectionService.getExerciseCollectionById(exerciseCollectionDetail.getExerciseCollection().getId());
+
+        exerciseCollectionDetail.setExercise(exercise);
+        exerciseCollectionDetail.setExerciseCollection(exerciseCollection);
         return exerciseCollectionDetailRepository.save(exerciseCollectionDetail);
     }
 

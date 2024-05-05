@@ -23,6 +23,7 @@ public class ExerciseCollectionDetail {
 
     @ManyToOne
     @JoinColumn(name = "exercise_id", referencedColumnName = "id")
+//    @JsonBackReference
     private Exercise exercise;
 
     @ManyToOne
