@@ -33,4 +33,8 @@ public class CustomCollectionService {
     public void deleteCustomCollection(Long id) {
         customCollectionRepository.deleteById(id);
     }
+
+    public List<CustomCollection> getCustomCollectionsByUserId(Long userId) {
+        return customCollectionRepository.findByUserId(userId);
+    }
 }

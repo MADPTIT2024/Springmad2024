@@ -45,4 +45,10 @@ public class CustomCollectionController {
         customCollectionService.deleteCustomCollection(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/by-user/{userId}")
+    public ResponseEntity<List<CustomCollection>> getCustomCollectionsByUser(@PathVariable("userId") Long userId) {
+        List<CustomCollection> customCollections = customCollectionService.getCustomCollectionsByUserId(userId);
+        return new ResponseEntity<>(customCollections, HttpStatus.OK);
+    }
 }
