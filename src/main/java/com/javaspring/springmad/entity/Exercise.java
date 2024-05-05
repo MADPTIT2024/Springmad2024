@@ -2,14 +2,12 @@ package com.javaspring.springmad.entity;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -34,8 +32,15 @@ public class Exercise {
     private String video;
 
     @Column(nullable = true)
-    private Integer rep = 0;
+    private Integer rep;
 
     @Column(nullable = true)
-    private Integer timer = 0;
+    private Integer timer;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "exercise_id",
+            referencedColumnName = "id"
+    )
+    private List<ExerciseCollectionDetail> exerciseCollectionDetails;
 }

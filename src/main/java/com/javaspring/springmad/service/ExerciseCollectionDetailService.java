@@ -12,6 +12,10 @@ import java.util.Optional;
 public class ExerciseCollectionDetailService {
     @Autowired
     private ExerciseCollectionDetailRepository exerciseCollectionDetailRepository;
+    @Autowired
+    private ExerciseService exerciseService;
+    @Autowired
+    private ExerciseCollectionService exerciseCollectionService;
 
     public List<ExerciseCollectionDetail> getAllExerciseCollectionDetails() {
         return exerciseCollectionDetailRepository.findAll();
@@ -22,8 +26,13 @@ public class ExerciseCollectionDetailService {
     }
 
     public ExerciseCollectionDetail createExerciseCollectionDetail(ExerciseCollectionDetail exerciseCollectionDetail) {
-
-            return exerciseCollectionDetailRepository.save(exerciseCollectionDetail);
+//        var exercise = exerciseService.getExerciseById(exerciseCollectionDetail.getExercise().getId());
+//        var exerciseCollection = exerciseCollectionService.getExerciseCollectionById(exerciseCollectionDetail.getExerciseCollection().getId());
+//        exerciseCollectionDetail.setExercise(exercise);
+//        exerciseCollectionDetail.setExerciseCollection(exerciseCollection);
+        System.out.println(exerciseCollectionDetail);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+        return exerciseCollectionDetailRepository.save(exerciseCollectionDetail);
     }
 
     public ExerciseCollectionDetail updateExerciseCollectionDetail(Long id, ExerciseCollectionDetail exerciseCollection) {
