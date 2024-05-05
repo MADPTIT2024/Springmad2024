@@ -19,6 +19,9 @@ public class CustomCollection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(
             name = "user_id",
