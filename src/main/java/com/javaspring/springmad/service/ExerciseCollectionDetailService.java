@@ -31,7 +31,6 @@ public class ExerciseCollectionDetailService {
 //        exerciseCollectionDetail.setExercise(exercise);
 //        exerciseCollectionDetail.setExerciseCollection(exerciseCollection);
         System.out.println(exerciseCollectionDetail);
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
         return exerciseCollectionDetailRepository.save(exerciseCollectionDetail);
     }
 
