@@ -29,7 +29,10 @@ public class MusicService {
         Optional<Music> existingMusicOptional = musicRepository.findById(id);
         if (existingMusicOptional.isPresent()) {
             Music existingMusic = existingMusicOptional.get();
-            existingMusic.setUrl(music.getUrl());
+            existingMusic.setName(music.getName());
+            existingMusic.setUrlImage(music.getUrlImage());
+            existingMusic.setUrlMusic(music.getUrlMusic());
+            existingMusic.setTime(music.getTime());
             return musicRepository.save(existingMusic);
         } else {
             return null;
