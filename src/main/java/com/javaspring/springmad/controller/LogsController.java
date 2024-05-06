@@ -24,6 +24,17 @@ public class LogsController {
 
         return new ResponseEntity<>(logs, HttpStatus.OK);
     }
+    
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Logs>> getAllLogsByUserId(@PathVariable Long id) {
+        List<Logs> logsUser = logsService.getLogsByUserCollectionDetailUserId(id);
+
+        if (logsUser != null) {
+            return new ResponseEntity<>(logsUser, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping("/count")
     public int getLogsCount() {
