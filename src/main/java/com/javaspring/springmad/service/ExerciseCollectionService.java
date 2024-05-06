@@ -20,6 +20,10 @@ public class ExerciseCollectionService {
     public ExerciseCollection getExerciseCollectionById(Long id) {
         return exerciseCollectionRepository.findById(id).orElse(null);
     }
+    
+    public Double getTotalCalories() {
+        return exerciseCollectionRepository.getTotalCalories();
+    }
 
     public ExerciseCollection createExerciseCollection(ExerciseCollection exerciseCollection) {
         ExerciseCollection existingExerciseCollection = exerciseCollectionRepository.findByName(exerciseCollection.getName());
@@ -36,6 +40,7 @@ public class ExerciseCollectionService {
             ExerciseCollection existingExerciseCollection = existingExerciseCollectionOptional.get();
             existingExerciseCollection.setName(exerciseCollection.getName());
             existingExerciseCollection.setPublicity(exerciseCollection.isPublicity());
+            existingExerciseCollection.setCalories(exerciseCollection.getCalories());
             return exerciseCollectionRepository.save(existingExerciseCollection);
         } else {
             return null;

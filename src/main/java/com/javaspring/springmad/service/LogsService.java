@@ -16,6 +16,10 @@ public class LogsService {
     public List<Logs> getAllLogs() {
         return logsRepository.findAll();
     }
+    
+    public List<Logs> getLogsByUserCollectionDetailUserId(Long userCollectionDetailId) {
+        return logsRepository.findByUserCollectionDetailUserId(userCollectionDetailId);
+    }
 
     public Logs getLogsById(Long id) {
         return logsRepository.findById(id).orElse(null);

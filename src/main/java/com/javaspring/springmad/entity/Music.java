@@ -17,7 +17,12 @@ public class Music {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column
-	private String url;
+
+	private String name;
+
+	private String urlImage;
+
+	private String urlMusic;
+
+	private String time;
 }

@@ -36,4 +36,6 @@ public class ExerciseCollection {
             referencedColumnName = "id"
     )
     private List<ExerciseCollectionDetail> exerciseCollectionDetails;
+
+
 }
