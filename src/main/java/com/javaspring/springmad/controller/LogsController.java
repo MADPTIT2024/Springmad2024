@@ -34,7 +34,7 @@ public class LogsController {
 
     @GetMapping("/count/{id}")
     public int getLogsCountByUserId(@PathVariable Long id) {
-        List<Logs> logsUser = logsService.getLogsByUserCollectionDetailId(id);
+        List<Logs> logsUser = logsService.getLogsByUserCollectionDetailUserId(id);
 
         return logsUser.size();
     }
@@ -44,7 +44,7 @@ public class LogsController {
         
         float totalCalories = 0;
         
-        List<Logs> logsUser = logsService.getLogsByUserCollectionDetailId(id);
+        List<Logs> logsUser = logsService.getLogsByUserCollectionDetailUserId(id);
 
         List<UserCollectionDetail> userCollectionDetails = new ArrayList<UserCollectionDetail>();
 
@@ -66,7 +66,7 @@ public class LogsController {
     public int getTimesByUserId(@PathVariable Long id) {
         int totalMinute = 0;
         
-        List<Logs> logsUser = logsService.getLogsByUserCollectionDetailId(id);
+        List<Logs> logsUser = logsService.getLogsByUserCollectionDetailUserId(id);
         
         for(int i = 0 ; i < logsUser.size();i++){
             var log = logsUser.get(i);

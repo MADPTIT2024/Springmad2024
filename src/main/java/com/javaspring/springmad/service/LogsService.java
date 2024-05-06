@@ -17,8 +17,8 @@ public class LogsService {
         return logsRepository.findAll();
     }
     
-    public List<Logs> getLogsByUserCollectionDetailId(Long userCollectionDetailId) {
-        return logsRepository.findByUserCollectionDetailId(userCollectionDetailId);
+    public List<Logs> getLogsByUserCollectionDetailUserId(Long userCollectionDetailId) {
+        return logsRepository.findByUserCollectionDetailUserId(userCollectionDetailId);
     }
 
     public Logs getLogsById(Long id) {
