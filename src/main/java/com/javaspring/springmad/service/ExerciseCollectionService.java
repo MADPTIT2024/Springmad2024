@@ -40,6 +40,7 @@ public class ExerciseCollectionService {
             ExerciseCollection existingExerciseCollection = existingExerciseCollectionOptional.get();
             existingExerciseCollection.setName(exerciseCollection.getName());
             existingExerciseCollection.setPublicity(exerciseCollection.isPublicity());
+            existingExerciseCollection.setCalories(exerciseCollection.getCalories());
             return exerciseCollectionRepository.save(existingExerciseCollection);
         } else {
             return null;
