@@ -22,7 +22,7 @@ public class CustomCollection {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(
             name = "user_id",
             referencedColumnName = "id"

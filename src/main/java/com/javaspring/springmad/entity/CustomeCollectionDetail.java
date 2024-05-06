@@ -21,13 +21,13 @@ public class CustomeCollectionDetail {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(
-            name = "customcollectioon_id",
+            name = "customcollection_id",
             referencedColumnName = "id"
     )
     @JsonBackReference
     private CustomCollection customCollection;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(
             name = "exercise_id",
             referencedColumnName = "id"

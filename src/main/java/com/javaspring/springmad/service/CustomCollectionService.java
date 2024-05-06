@@ -1,7 +1,12 @@
 package com.javaspring.springmad.service;
 
 import com.javaspring.springmad.entity.CustomCollection;
+import com.javaspring.springmad.entity.CustomeCollectionDetail;
+import com.javaspring.springmad.entity.Exercise;
+import com.javaspring.springmad.entity.User;
 import com.javaspring.springmad.repository.CustomCollectionRepository;
+import com.javaspring.springmad.repository.ExerciseRepository;
+import com.javaspring.springmad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +16,15 @@ import java.util.Optional;
 @Service
 public class CustomCollectionService {
 
-    private final CustomCollectionRepository customCollectionRepository;
+    @Autowired
+    private CustomCollectionRepository customCollectionRepository;
 
     @Autowired
-    public CustomCollectionService(CustomCollectionRepository customCollectionRepository) {
-        this.customCollectionRepository = customCollectionRepository;
-    }
+    private ExerciseRepository exerciseRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
 
     public List<CustomCollection> getAllCustomCollections() {
         return customCollectionRepository.findAll();
@@ -27,6 +35,12 @@ public class CustomCollectionService {
     }
 
     public CustomCollection saveCustomCollection(CustomCollection customCollection) {
+        User user = userRepository.findById(customCollection.getUser().getId()).get();
+        for (CustomeCollectionDetail customeCollectionDetail : customCollection.getCustomeCollectionDetails()) {
+            Exercise exercise = exerciseRepository.findById(customeCollectionDetail.getExercise().getId()).get();
+            customeCollectionDetail.setExercise(exercise);
+        }
+        customCollection.setUser(user);
         return customCollectionRepository.save(customCollection);
     }
 
