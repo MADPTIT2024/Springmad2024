@@ -20,6 +20,10 @@ public class ExerciseCollectionService {
     public ExerciseCollection getExerciseCollectionById(Long id) {
         return exerciseCollectionRepository.findById(id).orElse(null);
     }
+    
+    public Double getTotalCalories() {
+        return exerciseCollectionRepository.getTotalCalories();
+    }
 
     public ExerciseCollection createExerciseCollection(ExerciseCollection exerciseCollection) {
         ExerciseCollection existingExerciseCollection = exerciseCollectionRepository.findByName(exerciseCollection.getName());
