@@ -51,6 +51,7 @@ public class UserService {
         if (existingUserOptional.isPresent()) {
             User existingUser = existingUserOptional.get();
             existingUser.setFull_name(user.getFull_name());
+            existingUser.setHashed_password(user.getHashed_password());
             existingUser.set_active(user.is_active());
             existingUser.setHeight(user.getHeight());
             existingUser.setWeight(user.getWeight());

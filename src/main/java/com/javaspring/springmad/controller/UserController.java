@@ -10,6 +10,7 @@ import com.javaspring.springmad.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -60,15 +61,30 @@ public class UserController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+	public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody Map<String, Object> requestData) {
 		User existingUser = userService.getUserById(id);
-		if (existingUser != null) {
-			User updatedUser = userService.updateUser(id, user);
-			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+		if (existingUser != null){
+			if (requestData.containsKey("full_name")) {
+				existingUser.setFull_name((String) requestData.get("full_name"));
+
+			}
+			if (requestData.containsKey("old_Password") && requestData.containsKey("new_Password")) {
+				String oldPassword = (String) requestData.get("old_Password");
+				String newPassword = (String) requestData.get("new_Password");
+				if (userService.verifyPassword(oldPassword, existingUser.getHashed_password())) {
+					existingUser.setHashed_password(userService.hashPassword(newPassword));
+				} else {
+					return new ResponseEntity<>("Old password is incorrect", HttpStatus.BAD_REQUEST);
+				}
+			}
+
+			User updatedUser = userService.updateUser(id, existingUser);
+			return new ResponseEntity<>("Update success", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
 		}
 	}
+	
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
