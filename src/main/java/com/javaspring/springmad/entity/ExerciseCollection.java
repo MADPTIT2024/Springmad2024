@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,8 +26,11 @@ public class ExerciseCollection {
     @Column(nullable = false)
     private String calories;
 
+    @Column(nullable = true)
+    private String image;
+
     @OneToMany(mappedBy = "exerciseCollection")
-    private Set<UserCollectionDetail> userCollectionDetails;
+    private List<UserCollectionDetail> userCollectionDetails;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(

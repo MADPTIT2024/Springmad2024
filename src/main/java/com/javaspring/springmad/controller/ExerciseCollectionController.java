@@ -65,6 +65,11 @@ public class ExerciseCollectionController {
         }
     }
 
+    @GetMapping("/user/{userId}")
+    public List<ExerciseCollection> getExerciseCollectionsByUserId(@PathVariable Long userId) {
+        return exerciseCollectionService.getExerciseCollectionsByUserId(userId);
+    }
+
 
 }
 

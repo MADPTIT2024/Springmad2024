@@ -20,7 +20,7 @@ public class ExerciseCollectionService {
     public ExerciseCollection getExerciseCollectionById(Long id) {
         return exerciseCollectionRepository.findById(id).orElse(null);
     }
-    
+
     public Double getTotalCalories() {
         return exerciseCollectionRepository.getTotalCalories();
     }
@@ -54,5 +54,9 @@ public class ExerciseCollectionService {
 
     public ExerciseCollection findExerciseCollectionByName(String name) {
         return exerciseCollectionRepository.findByName(name);
+    }
+
+    public List<ExerciseCollection> getExerciseCollectionsByUserId(Long userId) {
+        return exerciseCollectionRepository.findByUserId(userId);
     }
 }

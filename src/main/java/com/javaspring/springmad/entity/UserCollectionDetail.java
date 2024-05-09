@@ -1,5 +1,6 @@
 package com.javaspring.springmad.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class UserCollectionDetail {
 
     @ManyToOne
     @JoinColumn(name = "collection_id")
+    @JsonBackReference
     private ExerciseCollection exerciseCollection;
 
     @Column()
